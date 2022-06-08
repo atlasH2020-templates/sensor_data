@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "sensor_data Service Template",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Template for services that provide normalized discrete parameters, measured by sensors, in time series."
   },
   "tags": [
