@@ -1,9 +1,13 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "sensor_data Service Template",
-    "version": "0.1.1",
+    "title": "sensor_data Service Template API",
+    "version": "0.1.2",
     "description": "Template for services that provide normalized discrete parameters, measured by sensors, in time series."
+  },
+  "externalDocs": {
+    "description": "Service Template Document",
+    "url": "https://htmlpreview.github.io/?https://github.com/atlasH2020-templates/sensor_data/blob/v0.1.2/doc.html"
   },
   "tags": [
     {
@@ -243,11 +247,11 @@
             }
           },
           "400": {
-            "description": "Invalid or missing parameters. Also returned when fullfilling the request would transfer too much data (up to the implementor). The content SHOULD specify the reason as a json string.",
+            "description": "Invalid or missing parameters.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/DetailedError"
                 }
               }
             }
@@ -257,7 +261,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/DetailedError"
                 }
               }
             }
@@ -267,17 +271,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/DetailedError"
                 }
               }
             }
@@ -323,17 +317,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/DetailedError"
                 }
               }
             }
@@ -475,30 +459,40 @@
           ]
         }
       },
-      "Error": {
-        "description": "This defines the structure of an error payload when one is present. Actual messages and additional error information content may change from one implementation to another",
+      "DetailedError": {
         "type": "object",
-        "required": [
-          "message"
-        ],
+        "description": "This defines the structure of an error payload when one is present. Actual messages and additional error information content may change from one implementation to another",
         "properties": {
           "message": {
             "type": "string",
-            "description": "Error description.",
-            "example": "General description"
+            "description": "error description"
+          },
+          "status": {
+            "type": "string",
+            "format": "number",
+            "description": "http error code"
+          },
+          "error_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "A service's proprietary UI url where the user may navigate to view additional information or be prompted for additional actions to deal with the error. A well-behaved FMIS will present his users with a visual indication and the means to click on this link when this attribute is present."
           },
           "errors": {
-            "description": "Additional detailed information",
             "type": "array",
             "items": {
               "type": "string"
             },
-            "example": [
-              "optional",
-              "additional",
-              "details"
-            ]
+            "description": "Additional detailed information"
           }
+        },
+        "required": [
+          "message"
+        ],
+        "example": {
+          "message": "this is a sample error message",
+          "errors": [
+            "this is an example of additional error information"
+          ]
         }
       }
     }
