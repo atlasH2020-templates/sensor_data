@@ -2,12 +2,12 @@
   "openapi": "3.0.3",
   "info": {
     "title": "sensor_data Service Template API",
-    "version": "0.1.2",
-    "description": "Template for services that provide normalized discrete parameters, measured by sensors, in time series."
+    "version": "0.1.3",
+    "description": "Template for services that provide normalized discrete parameters for fields or barns, measured by sensors, in time series."
   },
   "externalDocs": {
     "description": "Service Template Document",
-    "url": "https://htmlpreview.github.io/?https://github.com/atlasH2020-templates/sensor_data/blob/v0.1.2/doc.html"
+    "url": "https://htmlpreview.github.io/?https://github.com/atlasH2020-templates/sensor_data/blob/v0.1.3/doc.html"
   },
   "tags": [
     {
@@ -468,8 +468,7 @@
             "description": "error description"
           },
           "status": {
-            "type": "string",
-            "format": "number",
+            "type": "integer",
             "description": "http error code"
           },
           "error_url": {
