@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "207eecb9-be6d-4b93-b0aa-96c3141d7529",
+		"name": "ATLAS sensor_data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "capabilities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sensor_data_url}}/capabilities",
+					"host": [
+						"{{sensor_data_url}}"
+					],
+					"path": [
+						"capabilities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"boundary\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [[[11,43.4],[11.5,43.4],[11.5,43],[11,43],[11,43.4]]]\n    },\n    \"from\": \"2022-11-02T01:00:00.000Z\",\n    \"to\": \"2022-11-25T01:00:00.000Z\",\n    \"parameters\": [\n        [\n            {\n                \"key\": \"ATMO__RAINFALL\",\n                \"aggregations\":[\"min\",\"avg\",\"max\"]\n            },\n            {\n                \"key\": \"ATMO__T\",\n                \"aggregations\": [\n                    \"sum\"\n                ]\n            }\n        ]\n    ],\n    \"timeWindow\": \"P1D\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sensor_data_url}}/data",
+					"host": [
+						"{{sensor_data_url}}"
+					],
+					"path": [
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{sensor_data_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
